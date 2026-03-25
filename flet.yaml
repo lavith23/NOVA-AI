@@ -1,0 +1,17 @@
+# Nova AI Configuration
+display_name: Nova AI
+product_name: Nova Assistant
+executable_name: nova
+bundle_id: com.lavith.novaassistant
+
+android:
+  # Permissions jo Nova ko chahiye
+  permissions:
+    - INTERNET
+    - RECORD_AUDIO
+    - CAMERA
+    - MODIFY_AUDIO_SETTINGS
+    - BLUETOOTH
+    - BATTERY_STATS
+  # App ka orientation (Portrait matlab seedha phone)
+  orientation: portrait
