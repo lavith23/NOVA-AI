@@ -1,28 +1,31 @@
 name: Build Nova APK
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: '3.11'
 
-      - name: Install Dependencies
+      - name: Install Flet and Build Tools
         run: |
           pip install flet
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jdk
 
       - name: Build APK
         run: |
-          # Flet ka official build command
-          flet build apk --project "Nova AI"
-          
-      - name: Upload APK
-        uses: actions/upload-artifact@v2
+          # Proper Flet build command
+          flet build apk
+
+      - name: Upload Artifact
+        # Yahan humne v2 ko v4 se replace kar diya hai
+        uses: actions/upload-artifact@v4
         with:
-          name: Nova-Assistant-APK
+          name: Nova-App-Final
           path: build/apk/*.apk
