@@ -1,0 +1,1 @@
+flet, plyer, SpeechRecognition, pyttsx3, groq
