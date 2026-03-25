@@ -12,19 +12,23 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install Flet and Build Tools
+      - name: Install Android SDK & Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install Flet
         run: |
           pip install flet
-          sudo apt-get update
-          sudo apt-get install -y openjdk-17-jdk
 
       - name: Build APK
         run: |
-          # Proper Flet build command
-          flet build apk
+          # Isse build process ki detail milegi
+          flet build apk --verbose
 
       - name: Upload Artifact
-        # Yahan humne v2 ko v4 se replace kar diya hai
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: Nova-App-Final
